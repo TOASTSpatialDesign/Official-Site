@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOAST Spatial Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+
+        .process-item {
+            padding-left: 5em;    /* 空出左側空間給「標題 | 」 */
+            text-indent: -5em;    /* 將第一行拉回左側，形成對齊 */
+            margin-bottom: 10px;
+            line-height: 1.8;
+                             }
+
+        .note-item {
+            padding-left: 1.5em;    /* 符號的空間 */
+            text-indent: -1.5em;    /* 將第一行拉回，讓 ※ 突出 */
+            margin-bottom: 8px;     /* 每一條備註的間距 */
+            line-height: 1.6;
+            color: #888;            /* 備註通常用灰色比較不搶眼 */
+            font-size: 13px;
+                        }
+
+        /* 3. 加入滑動代碼：讓點擊導航時頁面平滑滑動 */
+        html { scroll-behavior: smooth; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #121212; 
+            color: #f2f0eb; 
+            font-family: 'Noto Serif TC', serif; 
+    
+            /* 強制吸附規則 */
+            scroll-snap-type: y mandatory; 
+            overflow-y: scroll;
+    
+            /* 移除掉 html { scroll-behavior: smooth; }，改由 CSS Snap 處理 */
+                }
+        
+        /* 1. 左側導航 */
+        .fixed-nav { position: fixed; left: 40px; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 20px; }
+        .nav-dot { color: #555; text-decoration: none; font-size: 12px; letter-spacing: 2px; transition: 0.3s; }
+        .nav-dot:hover { color: #D4AF37; }
+
+        /* 2. 背景區塊 */
+              /* 統一處理視差與捕捉點 */
+              .hero, section { 
+                  scroll-snap-align: start; 
+                  min-height: 100vh; 
+                  width: 100%; 
+                  display: flex; 
+                  flex-direction: column; 
+                  justify-content: center; 
+                  align-items: center; 
+                  position: relative;
+                                   }
+
+              /* 針對 Hero 特有的樣式（背景相關） */
+              .hero {
+                  background-color: #121212; 
+                  background-size: cover; 
+                  background-position: center; 
+                  background-attachment: fixed; 
+                  transition: background-image 1.5s ease-in-out;
+                       }
+
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 18, 18, 0.7); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; text-align: center; }
+
+        /* Logo 與文字 */
+        .logo-box { width: 120px; margin: 0 auto 20px auto; }
+        h1 { font-weight: 300; letter-spacing: 12px; margin-bottom: 5px; font-size: 24px; }
+        .sub-tag { color: #D4AF37; letter-spacing: 4px; font-size: 12px; margin-bottom: 30px; }
+
+        /* 3. 內容區塊 */
+              /* 針對 section 特有的樣式（間距與邊框） */
+              section { 
+                  padding: 100px 40px; 
+                  border-bottom: 1px solid #222; 
+                          }
+        h2 { font-size: 24px; letter-spacing: 8px; margin-bottom: 40px; color: #D4AF37; }
+        .text-content { max-width: 600px; line-height: 2; text-align: center; }
+
+        /* Discord 按鈕 */
+        .discord-btn { 
+            display: inline-block; padding: 10px 25px; border: 1px solid #D4AF37; color: #D4AF37; 
+            text-decoration: none; font-size: 12px; letter-spacing: 2px; transition: 0.3s;
+        }
+        .discord-btn:hover { background: #D4AF37; color: #121212; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed-nav">
+        <a href="#home" class="nav-dot">HOME</a>
+        <a href="#service" class="nav-dot">SERVICE</a>
+        <a href="#works" class="nav-dot">WORKS</a>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <div class="logo-box">
+                <svg viewBox="0 0 100 100" width="100" height="100" style="display:block; margin: 0 auto;" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M25 75 L45 25 A 12 12 0 0 1 58 32 L40 80 Z" fill="#D4AF37" />
+                      <path d="M48 78 L65 35 A 10 10 0 0 1 73 42 L58 80 Z" fill="#D4AF37" opacity="0.8"/>
+                      <path d="M68 70 L80 48 A 6 6 0 0 1 84 53 L74 72 Z" fill="#D4AF37" opacity="0.5"/>
+                      <line x1="20" y1="80" x2="65" y2="80" stroke="#D4AF37" stroke-width="1.5" opacity="0.9"/>
+                </svg>
+            </div>
+            <h1>TOAST SPATIAL DESIGN</h1>
+            <div class="sub-tag">吐司 @ 奧汀</div>
+            <a href="https://discord.gg/kghgbSNtnp" class="discord-btn" target="_blank">LET'S DISCUSS (Discord ↗)</a>
+        </div>
+    </header>
+
+<section id="service">
+        <h2>SERVICE</h2>
+        <div class="text-content">
+            <p>設計諮詢、空間規劃、軟裝配置<br>我們相信每一次的配合，都是對生活細節的極致追求</p>
+            
+            <br>
+
+            <h3 style="color:#D4AF37; margin-bottom: 15px;">服務流程與設計共識</h3>
+
+            <p style="margin-bottom: 20px; line-height: 1.8;">
+             <div class="text-content" style="text-align: left;">
+
+                <div class="process-item">
+                <strong>作品查閱</strong>｜達成協議前，請詳見 <a href="#works" style="color:#D4AF37;">WORKS</a>。
+                </div> 
+
+                <div class="process-item">
+                <strong>需求討論</strong>｜針對風格（極簡、侘寂等）、空間用途與家具需求（如是否選用商城家具）進行詳細溝通。
+               </div>
+
+                <div class="process-item">
+                <strong>設計圖說</strong>｜使用模擬器製圖，為確保認知一致，將提供「模擬器截圖 vs. 遊戲實際截圖」對照，屋主理解並接受兩者差異後，方簽定協議進行設計。
+               </div>
+
+                <div class="process-item">
+                <strong>設計規格</strong>｜每個空間提供 2～8 張截圖參考。
+               </div>
+
+            </p>
+
+            <div class="text-content">
+            <h3 style="color:#D4AF37; margin-bottom: 20px;">服務價格 (gil起)</h3>
+            <p>Ｓ - 8Ｍ　｜　Ｍ - 15Ｍ　｜　Ｌ - 22Ｍ</p>
+
+            <br>
+            <h3 style="color:#D4AF37; margin-bottom: 20px;">收費流程與比例</h3>
+            <table style="width:100%; border-collapse: collapse; margin-bottom: 30px; font-size: 14px; border: 1px solid #333;">
+                <tr style="background: #222;">
+                    <th style="padding: 10px; border: 1px solid #444;">階段</th>
+                    <th style="padding: 10px; border: 1px solid #444;">支付比例</th>
+                    <th style="padding: 10px; border: 1px solid #444;">說明</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #444;">設計開始前</td>
+                    <td style="padding: 10px; border: 1px solid #444;">10%</td>
+                    <td style="padding: 10px; border: 1px solid #444;">確認意向</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #444;">進入施作前</td>
+                    <td style="padding: 10px; border: 1px solid #444;">40%</td>
+                    <td style="padding: 10px; border: 1px solid #444;">確認設計圖</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #444;">單一層樓完成</td>
+                    <td style="padding: 10px; border: 1px solid #444;">35%</td>
+                    <td style="padding: 10px; border: 1px solid #444;">工程進度款</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #444;">全棟驗收</td>
+                    <td style="padding: 10px; border: 1px solid #444;">15%</td>
+                    <td style="padding: 10px; border: 1px solid #444;">最終尾款</td>
+                </tr>
+            </table>
+
+            <p style="font-size: 12px; color: #888; text-align: left;">
+
+
+                    <div class="text-content" style="text-align: left; align-self: flex-start; width: 100%;">
+                        <div style="text-align: left; margin-top: 30px;">
+                            <div class="note-item">
+                                ※ 設計圖提供免費微調 10 次，超過次數每次加收 10 萬工本費；確認版本後若大改，加收 10% 重新設計費。
+                            </div>
+                            <div class="note-item">
+                                ※ 因人力有限，若至第三版仍無法達成設計共識（即收取原定 10% ＋ 另收 10%／版 x 2 版），將不再繼續設計及施作，且不退款所有已付金額。
+                            </div>
+                            <div class="note-item">
+                                ※ 家具若由團隊製作，採施作前 50% ＋ 完工後 50% 付款，恕不退款。
+                            </div>
+                        </div>
+                    </div>
+
+    <section id="works">
+        <h2>WORKS</h2>
+        <div class="text-content">
+            <p>精選案例展示區。<br>未來您可以將此處替換為圖片網格或輪播組件。</p>
+        </div>
+    </section>
+
+<script>
+    // 修正：將網址存為純字串，並確保 JS 正確抓取到 hero 元素
+    const images = [
+        "https://media.discordapp.net/attachments/1461713115313082439/1489291923972948018/ffxiv_20260402_234808_544.png?ex=6a15c230&is=6a1470b0&hm=bf5bb8aa3aba6993fc53735933641ec5fc774bb32abcc766348b1027a51c0341&=&format=webp&quality=lossless&width=1428&height=753",
+        "https://media.discordapp.net/attachments/1461713115313082439/1489292766625136640/ffxiv_20260402_235718_404.png?ex=6a15c2f9&is=6a147179&hm=aee7e7c10df85eca980061079ebf4922e4c431aa4feaf3dff65b83b820893b4e&=&format=webp&quality=lossless&width=1428&height=753",
+        "https://media.discordapp.net/attachments/1461713115313082439/1502745999225913404/ffxiv_20260510_025527_527.png?ex=6a15ecc5&is=6a149b45&hm=0ca394d0077b0447eb21ffec50e2436241703532b7244b6961869c49e286a176&=&format=webp&quality=lossless&width=1428&height=753"
+    ];
+    
+    let idx = 0;
+    const hero = document.getElementById('home');
+
+    function changeBg() {
+        // 設定正確的 CSS 背景格式
+        hero.style.backgroundImage = 'url("' + images[idx] + '")';
+        idx = (idx + 1) % images.length;
+    }
+
+    // 初始化背景並啟動輪播
+    changeBg();
+    setInterval(changeBg, 5000);
+</script>
+
+</body>
+</html>
